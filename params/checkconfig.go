@@ -15,7 +15,7 @@ func CheckConfig() (err error) {
 		return errors.New("empty config")
 	case config.Blockchain == nil:
 		return errors.New("must config Blockchain")
-	case config.Contracts == nil:
+	case config.Contract == nil:
 		return errors.New("must config Contracs")
 	}
 	//err = checkExchangeConfig()
@@ -60,7 +60,7 @@ func (ex *ContractConfig) check() error {
 	//	return fmt.Errorf("[check exchange] empty exchange pairs (exchange %v)", ex.Exchange)
 	//}
 	if !common.IsHexAddress(ex.Token) {
-		return fmt.Errorf("[check exchange] wrong exchange token '%v' (exchange %v)", ex.Token, ex.Exchange)
+		return fmt.Errorf("[check exchange] wrong exchange token '%v' (exchange %v)", ex.Token, ex.Spender)
 	}
 	return nil
 }

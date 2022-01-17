@@ -13,14 +13,12 @@ func initDecimal(token string) {
 }
 
 func Start() {
-	pairUpper := params.Pair
-	contractAddr_token :=  params.Contracts[pairUpper].Token
-	tokenExchangeAddr_token := params.Contracts[pairUpper].Exchange
+	contractAddr_token, tokenExchangeAddr_token := params.GetContracts()
 
 	initDecimal(contractAddr_token)
 
 	fmt.Println(time.Now().Format("2006-01-02 15:04:05"))
-	fmt.Printf("ps. update every 10 minutes\n")
+	//fmt.Printf("ps. update every 10 minutes\n")
 	fmt.Printf("=============================================================================\n")
 	fmt.Printf("                             ETH APPROVE and BALANCE\n")
 	fmt.Printf("=============================================================================\n")
