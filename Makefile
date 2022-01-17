@@ -1,12 +1,12 @@
-.PHONY: amm all clean fmt lint
+.PHONY: approve all clean fmt lint
 
 GOBIN = ./build/bin
 GOCMD = env GO111MODULE=on GOPROXY=https://goproxy.io go
 
-amm:
-	$(GOCMD) run build/ci.go install ./cmd/amm
+approve:
+	$(GOCMD) run build/ci.go install ./cmd/approve
 	@echo "Done building."
-	@echo "Run \"$(GOBIN)/amm\" to launch amm."
+	@echo "Run \"$(GOBIN)/approve\" to launch approve."
 
 all:
 	$(GOCMD) build -v ./...

@@ -18,7 +18,7 @@ var (
 )
 
 func initApp() {
-	app.Action = autotrade
+	app.Action = approve
 	app.HideVersion = true // we have a command to print the version
 	app.Copyright = "Copyright 2017-2020 The Anyswap Authors"
 	app.Commands = []*cli.Command{
@@ -59,7 +59,7 @@ func main() {
 	}
 }
 
-func autotrade(ctx *cli.Context) error {
+func approve(ctx *cli.Context) error {
 	if ctx.NArg() > 0 {
 		return fmt.Errorf("invalid command: %q", ctx.Args().Get(0))
 	}
