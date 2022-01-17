@@ -38,14 +38,14 @@ func InitAllTokenDecimal() {
 		d, _ := decimal.Float64()
 		params.DecimalToken[token] = big.NewFloat(math.Pow(10, d))
 
-		token = strings.ToLower(ex.Exchange)
-		decimal, err = getDecimal(token)
-		if err != nil {
-			log.Warn("InitAllTokenDecimal", "token", token, "decimal", "nil")
-			os.Exit(1)
-		}
-		d, _ = decimal.Float64()
-		params.DecimalToken[token] = big.NewFloat(math.Pow(10, d))
+		//token = strings.ToLower(ex.Exchange)
+		//decimal, err = getDecimal(token)
+		//if err != nil {
+		//	log.Warn("InitAllTokenDecimal", "token", token, "decimal", "nil")
+		//	os.Exit(1)
+		//}
+		//d, _ = decimal.Float64()
+		//params.DecimalToken[token] = big.NewFloat(math.Pow(10, d))
 	}
 	token := strings.ToLower(params.Contracts[params.Pair].Token)
 	decimal, err := getDecimal(token)
@@ -56,14 +56,14 @@ func InitAllTokenDecimal() {
 	d, _ := decimal.Float64()
 	params.DecimalToken[token] = big.NewFloat(math.Pow(10, d))
 
-	token = strings.ToLower(params.Contracts[params.Pair].Exchange)
-	decimal, err = getDecimal(token)
-	if err != nil {
-		log.Warn("InitAllTokenDecimal", "token", token, "decimal", "nil")
-		os.Exit(1)
-	}
-	d, _ = decimal.Float64()
-	params.DecimalToken[token] = big.NewFloat(math.Pow(10, d))
+	//token = strings.ToLower(params.Contracts[params.Pair].Exchange)
+	//decimal, err = getDecimal(token)
+	//if err != nil {
+	//	log.Warn("InitAllTokenDecimal", "token", token, "decimal", "nil")
+	//	os.Exit(1)
+	//}
+	//d, _ = decimal.Float64()
+	//params.DecimalToken[token] = big.NewFloat(math.Pow(10, d))
 	params.DecimalToken["eth"] = params.DecimalToken[token]
 }
 

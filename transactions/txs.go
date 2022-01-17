@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"math/big"
 	"strings"
-	"time"
+	//"time"
 
 	"github.com/weijun-sh/approve/client"
 	"github.com/weijun-sh/approve/params"
@@ -34,15 +34,15 @@ func Allowance(contractAddr, exchangeAddr string) (int, string) {
 	}
 	bAString := fmt.Sprintf("%0.4f", total)
 	bString := fmt.Sprintf("%0.4f", totalNotNil)
-	fmt.Printf("=======================================================================\n")
-	fmt.Println(time.Now().Format("2006-01-02 15:04:05"))
-	fmt.Printf("\n summary\n")
-	fmt.Printf("================================\n")
-	fmt.Printf("           | amount    balance\n")
-	fmt.Printf("-----------+--------------------\n")
-	fmt.Printf(" total     |    %3v %10v\n", len(addresses.Address), bAString)
-	fmt.Printf(" allowance |    %3v %10v\n", nn, bString)
-	fmt.Printf("================================\n")
+	fmt.Printf("-----------------------------------------------------------------------------\n")
+	//fmt.Printf("\n summary\n")
+	//fmt.Printf("================================\n")
+	//fmt.Printf("           | amount    balance\n")
+	//fmt.Printf("-----------+--------------------\n")
+	fmt.Printf("                                                total  %9v %10v\n", len(addresses.Address), bAString)
+	fmt.Printf("                                            allowance  %9v %10v\n", nn, bString)
+	//fmt.Printf("================================\n")
+	fmt.Printf("=============================================================================\n")
 	return len(addresses.Address), bString
 }
 
@@ -75,7 +75,7 @@ func allowance2(i int, keyAddress, contractAddr, exchangeAddr string) (*big.Floa
 		aString = "        -1"
 	}
 	bString := fmt.Sprintf("%0.4f", convertBalance)
-	fmt.Printf(" %3v | %v %v %10v\n", i+1, from.String(), aString, bString)
+	fmt.Printf(" %7v | %v %v %10v\n", i+1, from.String(), aString, bString)
 	return ret, convertBalance, nil
 }
 

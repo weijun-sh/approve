@@ -62,11 +62,11 @@ func InitConfig() {
 	CheckPairContract()
 }
 
-func GetExchange(pair string) (string, string, error) {
+func GetExchange(pair string) (string, []string, error) {
 	if Contracts[pair] != nil {
 		return Contracts[pair].Token, Contracts[pair].Exchange, nil
 	}
-	return "", "", errors.New("GetExchange nil")
+	return "", nil, errors.New("GetExchange nil")
 }
 
 func parseContracts() {
@@ -75,10 +75,10 @@ func parseContracts() {
 		pair := strings.ToUpper(fmt.Sprintf("%v/%v", t, c))
 		Contracts[pair] = &ContractConfig{}
 		Contracts[pair].Pair = ex.Pair
-		Contracts[pair].Token = common.HexToAddress(ex.Token).String()
-		Contracts[pair].Exchange = common.HexToAddress(ex.Exchange).String()
-		TokenType[strings.ToLower(ex.Token)] = t
-		TokenType[strings.ToLower(ex.Exchange)] = t
+		Contracts[pair].Token = ex.Token
+		Contracts[pair].Exchange = ex.Exchange
+		//TokenType[strings.ToLower(ex.Token)] = t
+		//TokenType[strings.ToLower(ex.Exchange)] = t
 	}
 }
 
@@ -147,56 +147,56 @@ func IsRecordTokenAccount() bool {
 }
 
 // IsConfigedExchange return true if exchange is configed
-func IsConfigedExchange(exchange string) bool {
-	return GetExchangePairs(exchange) != ""
-}
+//func IsConfigedExchange(exchange string) bool {
+//	return GetExchangePairs(exchange) != ""
+//}
 
 // IsConfigedToken return true if token is configed
-func IsConfigedToken(token string) bool {
-	return GetConfigedExchange(token) != ""
-}
+//func IsConfigedToken(token string) bool {
+//	return GetConfigedExchange(token) != ""
+//}
 
 // GetConfigedExchange get configed exchange
-func GetConfigedExchange(token string) string {
+func GetConfigedExchange(token string) []string {
 	for _, ex := range config.Contracts {
 		if strings.EqualFold(ex.Token, token) {
 			return ex.Exchange
 		}
 	}
-	return ""
+	return nil
 }
 
 // GetExchangePairs get pairs from config
 func GetExchangePairs(exchange string) string {
-	for _, ex := range config.Contracts {
-		if strings.EqualFold(ex.Exchange, exchange) {
-			return ex.Pair
-		}
-	}
+//	for _, ex := range config.Contracts {
+//		if strings.EqualFold(ex.Exchange, exchange) {
+//			return ex.Pair
+//		}
+//	}
 	return ""
 }
 
 // GetExchangeToken get exchane token from config
-func GetExchangeToken(exchange string) string {
-	log.Info("GetExchangeToken")
-	for _, ex := range config.Contracts {
-		if strings.EqualFold(ex.Exchange, exchange) {
-			return ex.Token
-		}
-	}
-	return ""
-}
+//func GetExchangeToken(exchange string) string {
+//	log.Info("GetExchangeToken")
+//	for _, ex := range config.Contracts {
+//		if strings.EqualFold(ex.Exchange, exchange) {
+//			return ex.Token
+//		}
+//	}
+//	return ""
+//}
 
 // GetTokenAddress get token address from config
-func GetTokenAddress(exchange string) string {
-	log.Info("GetTokenAddress")
-	for _, ex := range config.Contracts {
-		if strings.EqualFold(ex.Exchange, exchange) {
-			return ex.Token
-		}
-	}
-	return ""
-}
+//func GetTokenAddress(exchange string) string {
+//	log.Info("GetTokenAddress")
+//	for _, ex := range config.Contracts {
+//		if strings.EqualFold(ex.Exchange, exchange) {
+//			return ex.Token
+//		}
+//	}
+//	return ""
+//}
 
 func GetTransferTo() []string {
 	return config.Transfer.To
@@ -301,15 +301,15 @@ func IsInAllTokenAndExchanges(address common.Address) bool {
 }
 
 // IsExcludedRewardAccount is excluded
-func IsExcludedRewardAccount(account common.Address) bool {
-	if account == (common.Address{}) {
-		return true
-	}
-	if IsConfigedExchange(account.String()) {
-		return true
-	}
-	return IsInAllExchanges(account)
-}
+//func IsExcludedRewardAccount(account common.Address) bool {
+//	if account == (common.Address{}) {
+//		return true
+//	}
+//	if IsConfigedExchange(account.String()) {
+//		return true
+//	}
+//	return IsInAllExchanges(account)
+//}
 
 // Config config
 type Config struct {
@@ -373,7 +373,7 @@ type exchange_struct struct {
 type ContractConfig struct {
 	Pair string
         Token string
-        Exchange string
+        Exchange []string
 }
 
 type decimal_struct struct {

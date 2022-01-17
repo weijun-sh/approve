@@ -13,6 +13,7 @@ func initDecimal(token string) {
 }
 
 func Start() {
+	pairUpper := params.Pair
 	contractAddr_token :=  params.Contracts[pairUpper].Token
 	tokenExchangeAddr_token := params.Contracts[pairUpper].Exchange
 
@@ -20,14 +21,17 @@ func Start() {
 
 	fmt.Println(time.Now().Format("2006-01-02 15:04:05"))
 	fmt.Printf("ps. update every 10 minutes\n")
-	fmt.Printf("=======================================================================\n")
-	fmt.Printf("                        ETH APPROVE and BALANCE\n")
-	fmt.Printf("=======================================================================\n")
-	fmt.Printf("     | owner                                       allowance    balance\n")
-	fmt.Printf("-----+-----------------------------------------------------------------\n")
+	fmt.Printf("=============================================================================\n")
+	fmt.Printf("                             ETH APPROVE and BALANCE\n")
+	fmt.Printf("=============================================================================\n")
         //l, b := Allowance("addresses.txt", contractAddr_token, tokenExchangeAddr_token)
-        allowance(contractAddr_token, tokenExchangeAddr_token)
+	for _, spender := range tokenExchangeAddr_token {
+		fmt.Printf(" spender | %v  allowance    balance\n", spender)
+		fmt.Printf("---------+-------------------------------------------------------------------\n")
+		allowance(contractAddr_token, spender)
+	}
 	//fmt.Printf(" %3v                                                          %10v\n", l, b)
+	fmt.Println(time.Now().Format("2006-01-02 15:04:05"))
 }
 
 func allowance(contractAddr, exchangeAddr string) (int, string){
