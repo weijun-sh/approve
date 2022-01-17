@@ -1,0 +1,79 @@
+Factories = ["0x0911fD5BCbC574c59bee6D7B772587B4A03D2778"]
+#config
+Action = "status" # buy, sell, approve, allowance, addliquidity, removeliquidity, status, check, mine
+Pair = "any/ftm" # any/ftm, usdt/ftm
+
+[Mine]
+TxMinAmount = 300.0 # 18 ANY
+Reward = 3300
+RewardToken = "ANY" # ANY
+SellRewardToken = true
+TxRate = 0.5
+TxRewardPercent = 0.5
+TxMinExpectPercent = 0.5 # 1: all
+Rebase = "false" # reward = 28800 * 5 * 0.2 * RabaseRate # CYC
+StrategyReward = "percent" # percent/liquidity
+StrategySycle = "blocktime"
+Blocks_mine = [50, 60, 70, 80, 95]
+
+[Exchange]
+Amount_buy = 7045 # buy total per day with FSN
+Amount_sell = 613 # 0: follow Amount_buy, almost all sold as mach as buying
+Times_mine_sycle = 1 # 0: use Height, others: rand
+Height = 87 # mine block number, int
+Sycles = 1 # mine days, int. 0 for ever
+
+[Sync]
+BlockStart = 3260043
+BlockEnd = 3260142
+ScanAllExchange = false
+
+[Transfer]
+To = [""]
+
+[[Contracts]]
+Pair     = "ANY/FTM"
+Token    = "0xddcb3ffd12750b45d32e084887fdf1aabab34239"
+Exchange = "0x918f6de5b683b688961deab48546ca422280c64f"
+[[Contracts]]
+Pair     = "USDT/FTM"
+Token    = "0x1ffbd1e3584f139ca42d77ef99ef99550ecf46a8"
+Exchange = "0xa0d5b09fdeabfff541703779decdb798d55faea2"
+[[Contracts]]
+Pair     = "ETH/FTM"
+Token    = "0xb688e18f34e6e424c44b247318f22367ed7df3e2"
+Exchange = "0xe9ab6fb12c1aa4be556b215865411be8a55d192a"
+#[[Contracts]]
+#Pair     = "BTC/FTM"
+#Token    = ""
+#Exchange = ""
+
+[Account]
+Keystore = ""
+Password = ""
+
+[Blockchain]
+GatewayURL = "https://rpc.fantom.network"
+#GatewayURL = "https://rpcapi.fantom.network"
+#GatewayURL = "http://127.0.0.1:39515"
+GasLimit   = 2000000 # int
+GasPrice   = 22000000000 # FSN: int, wei
+DeadLine   = 1800 # second
+
+[Blocktime]
+Blocks_day = 86400 # 24h * 60 * 60
+Blocks_sycle = 1800 # 30m * 60
+Block_start = 1607594400 # 20201210 18:00:00
+AverageBlockTime = 3
+
+[Blocknumber]
+Blocks_day = 28800
+Blocks_sycle = 600 # rewards sycle
+Block_start = 756600
+AverageBlockTime = 3
+
+[Slipage]
+Slipage = 0.05 #float
+
+[Fee] # contract
+Fee = 0.004 #float
